@@ -1,13 +1,21 @@
-web:
-    image: nginx:latest
-    ports:
-        - "8080:80"
-    volumes:
-        - ./app:/var/www/html
-        - ./site.conf:/etc/nginx/conf.d/default.conf
-    links:
-        - php
-php:
-    image: php:7-fpm
-    volumes:
-        - ./app:/var/www/html
+version: '2'
+services:
+  web:
+      image: nginx:latest
+      ports:
+          - "8888:80"
+      volumes:
+          - ./app:/var/www/html
+          - ./site.conf:/etc/nginx/conf.d/default.conf
+      links:
+          - php
+  php:
+      image: bwinkers/docker-php7-phalcon
+      volumes:
+          - ./app:/var/www/html
+  logger:
+      image: gliderlabs/logspout
+      ports:
+          - "8000:80"
+      volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
