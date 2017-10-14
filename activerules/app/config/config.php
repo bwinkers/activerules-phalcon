@@ -5,11 +5,11 @@ use Phalcon\Logger;
 
 return new Config([
     'database' => [
-        'adapter' => 'Mysql',
-        'host' => '127.0.0.1',
-        'username' => 'root',
-        'password' => '',
-        'dbname' => 'vokuro'
+        'adapter' => 'Postgresql',
+        'host' => 'postgres',
+        'username' => 'activerules',
+        'password' => 'FZrtTASY8e3jmwjkK',
+        'dbname' => 'activerules'
     ],
     'application' => [
         'controllersDir' => APP_PATH . '/controllers/',
@@ -20,7 +20,7 @@ return new Config([
         'pluginsDir'     => APP_PATH . '/plugins/',
         'cacheDir'       => BASE_PATH . '/cache/',
         'baseUri'        => '/',
-        'publicUrl'      => 'vokuro.phalconphp.com',
+        'publicUrl'      => 'local.izzup.com',
         'cryptSalt'      => 'eEAfR|_&G&f,+vU]:jFr!!A&+71w1Ms9~8_4L!<@[N@DyaIP_2My|:+.u>/6m,$D'
     ],
     'mail' => [

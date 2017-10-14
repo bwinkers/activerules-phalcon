@@ -7,16 +7,35 @@ services:
       volumes:
           - ./activerules:/var/www/html
           - ./site.conf:/etc/nginx/conf.d/default.conf
+          - /data/cache:/var/www/html/cache
       links:
           - php
   php:
       image: bwinkers/docker-php7-phalcon
       volumes:
           - ./activerules:/var/www/html
-
+          - /data/cache:/var/www/html/cache
+      links:
+          - postgres
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+        POSTGRES_PASSWORD: FZrtTASY8e3jmwjkK
+        POSTGRES_USER: activerules
+        POSTGRES_DB: activerules
+    volumes:
+          - /data/postgresql:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  adminer:
+      image: adminer
+      restart: always
+      ports:
+          - 8088:8080
   logger:
       image: gliderlabs/logspout
       ports:
-          - "8000:80"
+          - "8080:80"
       volumes:
           - /var/run/docker.sock:/var/run/docker.sock        
